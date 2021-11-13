@@ -50,7 +50,7 @@ export default function NavBar({ setIsLogin, hasAuth }) {
                     <button
                         type="button"
                         onClick={onLogOutBtnClick}
-                        className="btn btn-link"
+                        className="btn btn-outline-secondary"
                     >
                         <span>Logout</span>
                         <i className="fas fa-sign-out-alt ms-2"></i>

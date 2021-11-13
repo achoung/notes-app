@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NoteService from '../../services/notes';
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import NoteService from '../../services/notes';
 
 export default function Home() {
     const [notes, setNotes] = useState([]);
@@ -23,9 +24,10 @@ export default function Home() {
     const deleteNote = async (id) => {
         try {
             await NoteService.deleteNote({ id });
+            toast('Deleted note successfully!');
             getNotes();
-        } catch (error) {
-            navigate('/');
+        } catch (err) {
+            toast(`Delete note failed! Error: ${err?.data?.msg || ''}`);
         }
     };
 
@@ -60,27 +62,32 @@ export default function Home() {
                                 <div className="card-text custom-note-card-content">
                                     <p>{note.content}</p>
                                 </div>
-                                <p className="card-text custom-card-date">
-                                    Last Updated: {fmtDate}
-                                </p>
-                                <div className="d-flex justify-content-end card-footer">
-                                    <button
-                                        className="btn btn-outline-secondary"
-                                        onClick={() =>
-                                            navigate(`edit/${note._id}`)
-                                        }
-                                    >
-                                        <i className="fa fa-edit me-2" />
-                                        Edit
-                                    </button>
-                                    <button
-                                        className="btn btn-outline-danger ms-2"
-                                        onClick={() => deleteNote(note._id)}
-                                    >
-                                        <i className="fa fa-trash me-2" />
-                                        Delete
-                                    </button>
-                                </div>
+                            </div>
+                            <span className="card-text custom-card-date">
+                                Last Updated: {fmtDate}
+                            </span>
+                            <div className="d-flex justify-content-end card-footer">
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    onClick={() => navigate(`/${note._id}`)}
+                                >
+                                    <i className="fa fa-search me-2" />
+                                    View
+                                </button>
+                                <button
+                                    className="btn btn-outline-secondary ms-2"
+                                    onClick={() => navigate(`edit/${note._id}`)}
+                                >
+                                    <i className="fa fa-edit me-2" />
+                                    Edit
+                                </button>
+                                <button
+                                    className="btn btn-outline-danger ms-2"
+                                    onClick={() => deleteNote(note._id)}
+                                >
+                                    <i className="fa fa-trash me-2" />
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </div>

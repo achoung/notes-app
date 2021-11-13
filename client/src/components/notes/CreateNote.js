@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import NoteService from '../../services/notes';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import NoteService from '../../services/notes';
 
 export default function CreateNote() {
     const [note, setNote] = useState({
@@ -25,15 +26,15 @@ export default function CreateNote() {
             };
 
             await NoteService.createNote(newNote);
-
+            toast('Created note successfully!');
             navigate('/');
         } catch (err) {
-            navigate('/');
+            toast(`Create note failed! Error: ${err?.data?.msg || ''}`);
         }
     };
 
     return (
-        <div className="create-note">
+        <div className="note-container">
             <h3>Create Note</h3>
             <form onSubmit={createNote} autoComplete="off">
                 <div className="mb-3">

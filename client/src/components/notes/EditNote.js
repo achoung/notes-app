@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NoteService from '../../services/notes';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function EditNote() {
     const [note, setNote] = useState({
@@ -42,19 +43,20 @@ export default function EditNote() {
                 },
             };
             await NoteService.updateNote(updatedNoteData);
+            toast('Edited note successfully!');
             navigate('/');
         } catch (err) {
-            navigate('/');
+            toast(`Edit note failed! Error: ${err?.data?.msg || ''}`);
         }
     };
 
     return (
-        <div className="create-note">
+        <div className="note-container">
             <h3>Edit Note</h3>
             <form onSubmit={editNote} autoComplete="off">
                 <div className="mb-3">
                     <label
-                        id="create-note-title-label"
+                        id="edit-note-title-label"
                         htmlFor="title"
                         className="form-label"
                     >
@@ -69,13 +71,13 @@ export default function EditNote() {
                         required
                         onChange={onChangeInput}
                         aria-label="Title"
-                        aria-describedby="create-note-title-label"
+                        aria-describedby="edit-note-title-label"
                     />
                 </div>
 
                 <div className="mb-3">
                     <label
-                        id="create-note-content-label"
+                        id="edit-note-content-label"
                         htmlFor="content"
                         className="form-label"
                     >
@@ -91,7 +93,7 @@ export default function EditNote() {
                         rows="10"
                         onChange={onChangeInput}
                         aria-label="Content"
-                        aria-describedby="create-note-content-label"
+                        aria-describedby="edit-note-content-label"
                     />
                 </div>
                 <div className="d-flex justify-content-end">

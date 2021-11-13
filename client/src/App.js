@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import UserService from './services/user';
 import NavBar from './components/NavBar';
 import Login from './components/login/Login';
@@ -7,6 +8,7 @@ import Register from './components/login/Register';
 import Home from './components/notes/Home';
 import CreateNote from './components/notes/CreateNote';
 import EditNote from './components/notes/EditNote';
+import ViewNote from './components/notes/ViewNote';
 import AuthenticatedRoute from './components/routes/AuthenticatedRoute';
 import LoginRoute from './components/routes/LoginRoute';
 
@@ -81,9 +83,18 @@ function App() {
                                     </AuthenticatedRoute>
                                 }
                             />
+                            <Route
+                                path="/:id"
+                                element={
+                                    <AuthenticatedRoute hasAuth={isLogin}>
+                                        <ViewNote />
+                                    </AuthenticatedRoute>
+                                }
+                            />
                         </Routes>
                     )}
                 </div>
+                <ToastContainer />
             </div>
         </BrowserRouter>
     );

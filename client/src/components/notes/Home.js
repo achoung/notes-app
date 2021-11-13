@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NoteService from '../../services/notes';
 import moment from 'moment';
 
 export default function Home() {
     const [notes, setNotes] = useState([]);
+    const [isFetching, setIsFetching] = useState(true);
 
     const navigate = useNavigate();
 
     const getNotes = async () => {
+        setIsFetching(true);
         const res = await NoteService.fetchAllNotes();
         setNotes(res.data);
+        setIsFetching(false);
     };
 
     useEffect(() => {
@@ -22,12 +25,23 @@ export default function Home() {
             await NoteService.deleteNote({ id });
             getNotes();
         } catch (error) {
-            window.location.href = '/';
+            navigate('/');
         }
     };
 
+    if (isFetching) {
+        return null;
+    }
+
+    if (!notes.length) {
+        return (
+            <h1 className="home-empty-notes-msg">
+                Create a note to get started!
+            </h1>
+        );
+    }
+
     return (
-        // <div className="container">
         <div className="row row-cols-auto">
             {notes.map((note) => {
                 const fmtDate = moment(note.date).format(

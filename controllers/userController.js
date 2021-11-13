@@ -11,10 +11,10 @@ async function createUser(req, res) {
     try {
         const { email, password } = req.body;
 
-        // verify if the user's email already exists 
+        // verify if the user's email already exists
         const user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ msg: "Email already exists" });
+            return res.status(400).json({ msg: 'Email already exists' });
         }
 
         const newUser = new User({ email, password });
@@ -34,16 +34,16 @@ async function loginUser(req, res) {
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select('+password');
         if (!user) {
-            return res.status(400).json({ msg: "User does not exist" });
+            return res.status(400).json({ msg: 'User does not exist' });
         }
 
         const isPasswordValid = await user.comparePassword(password);
         if (!isPasswordValid) {
-            return res.status(400).json({ msg: "Password is incorrect" });
+            return res.status(400).json({ msg: 'Password is incorrect' });
         }
 
         const loggedInUser = await user.generateToken();
-        
+
         // omit "password" property from being returned in response
         const { password: omitPassword, ...result } = loggedInUser.toObject();
 
@@ -56,18 +56,27 @@ async function loginUser(req, res) {
 async function logoutUser(req, res) {
     try {
         if (!req.user) {
-            return res.status(400).json({ msg: "User does not exist" });
+            return res.status(400).json({ msg: 'User does not exist' });
         }
 
         await req.user.deleteToken(req.token);
         res.sendStatus(200);
-    } catch(err) {
+    } catch (err) {
         return res.status(500).json({ msg: err.message });
     }
+}
+
+async function isLoggedIn(req, res) {
+    if (!req.user) {
+        return res.json(false);
+    }
+
+    return res.json(true);
 }
 
 module.exports = {
     createUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    isLoggedIn,
 };

@@ -4,16 +4,18 @@ const config = {
     // directly or have them stored/fetched in some cloud key/value storage like AWS Secrets Manager.
     production: {
         JWT_TOKEN_SECRET: 'achoung',
-        MONGO_DB_URL: 'mongodb+srv://achoung:achoung123@notesdb.eqjjx.mongodb.net/notes?retryWrites=true&w=majority'
+        MONGO_DB_URL:
+            'mongodb+srv://achoung:achoung123@notesdb.eqjjx.mongodb.net/notes?retryWrites=true&w=majority',
     },
-    dev: {
+    development: {
         JWT_TOKEN_SECRET: 'achoung',
-        MONGO_DB_URL: 'mongodb+srv://achoung:achoung123@notesdb.eqjjx.mongodb.net/notes?retryWrites=true&w=majority'
-    }
+        MONGO_DB_URL:
+            'mongodb+srv://achoung:achoung123@notesdb.eqjjx.mongodb.net/notes?retryWrites=true&w=majority',
+    },
 };
 
 function get(env) {
-    return config[env] || config.dev;
-};
+    return config[env] || config.development;
+}
 
 module.exports = { get };

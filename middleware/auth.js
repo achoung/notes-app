@@ -1,4 +1,3 @@
-
 const User = require('./../models/userModel');
 
 /**
@@ -6,7 +5,7 @@ const User = require('./../models/userModel');
  */
 const auth = async (req, res, next) => {
     try {
-        const token = req.header('Authorization')
+        const token = req.header('Authorization');
         if (!token) {
             return res.status(400).json({ msg: 'Invalid Authentication' });
         }
@@ -20,8 +19,8 @@ const auth = async (req, res, next) => {
         req.user = user;
         next();
     } catch (err) {
-        return res.status(500).json({ msg: err.message })
+        return res.status(500).json({ msg: err.message });
     }
-}
+};
 
 module.exports = auth;

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require('./../middleware/auth')
+const auth = require('./../middleware/auth');
 const noteController = require('./../controllers/noteController');
 
 // fetch all notes

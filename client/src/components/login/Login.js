@@ -51,6 +51,7 @@ export default function Login({ setIsLogin }) {
                         </label>
                         <input
                             id="login-email"
+                            data-test-id="login-email-field"
                             className="form-control"
                             type="email"
                             name="email"
@@ -68,6 +69,7 @@ export default function Login({ setIsLogin }) {
                         </label>
                         <input
                             id="login-password"
+                            data-test-id="login-password-field"
                             type="password"
                             className="form-control"
                             name="password"
@@ -80,7 +82,11 @@ export default function Login({ setIsLogin }) {
                             aria-describedby="login-password-label"
                         />
                     </div>
-                    <button className="btn btn-primary btn-block" type="submit">
+                    <button
+                        data-test-id="login-submit-btn"
+                        className="btn btn-primary btn-block"
+                        type="submit"
+                    >
                         Login
                     </button>
                     <div className="text-end mt-3">

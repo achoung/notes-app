@@ -18,19 +18,24 @@ function App() {
 
     useEffect(() => {
         const checkLogin = async () => {
-            setIsLoadingCheckLogin(true);
-            const token = localStorage.getItem('tokenStore');
-            if (token) {
-                const res = await UserService.isUserLoggedIn();
-                if (res.data) {
-                    setIsLogin(true);
+            try {
+                setIsLoadingCheckLogin(true);
+                const token = localStorage.getItem('tokenStore');
+                if (token) {
+                    const res = await UserService.isUserLoggedIn();
+                    if (res.data) {
+                        setIsLogin(true);
+                    } else {
+                        return localStorage.removeItem('tokenStore');
+                    }
                 } else {
-                    return localStorage.removeItem('tokenStore');
+                    setIsLogin(false);
                 }
-            } else {
+            } catch (err) {
                 setIsLogin(false);
+            } finally {
+                setIsLoadingCheckLogin(false);
             }
-            setIsLoadingCheckLogin(false);
         };
 
         checkLogin();

@@ -34,6 +34,7 @@ export default function NavBar({ setIsLogin, hasAuth }) {
             {hasAuth && (
                 <div className="d-flex justify-content-end flex-fill">
                     <button
+                        data-test-id="nav-bar-home-btn"
                         type="button"
                         onClick={onHomeBtnClick}
                         className="btn btn-secondary me-2"
@@ -41,6 +42,7 @@ export default function NavBar({ setIsLogin, hasAuth }) {
                         <i className="fas fa-home me-2"></i>Home
                     </button>
                     <button
+                        data-test-id="nav-bar-create-note-btn"
                         type="button"
                         onClick={onCreateNoteBtnClick}
                         className="btn btn-primary me-2"
@@ -48,6 +50,7 @@ export default function NavBar({ setIsLogin, hasAuth }) {
                         <i className="fas fa-plus-circle me-2"></i>Create Note
                     </button>
                     <button
+                        data-test-id="nav-bar-logout-btn"
                         type="button"
                         onClick={onLogOutBtnClick}
                         className="btn btn-outline-secondary"

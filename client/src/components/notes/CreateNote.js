@@ -46,6 +46,7 @@ export default function CreateNote() {
                         Title
                     </label>
                     <input
+                        data-test-id="create-note-title-field"
                         className="form-control"
                         type="text"
                         value={note.title}
@@ -67,6 +68,7 @@ export default function CreateNote() {
                         Content
                     </label>
                     <textarea
+                        data-test-id="create-note-content-field"
                         className="form-control"
                         type="text"
                         value={note.content}
@@ -80,7 +82,11 @@ export default function CreateNote() {
                     />
                 </div>
                 <div className="d-flex justify-content-end">
-                    <button className="btn btn-primary" type="submit">
+                    <button
+                        data-test-id="create-note-submit-btn"
+                        className="btn btn-primary"
+                        type="submit"
+                    >
                         Save
                     </button>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UserService from '../../services/user';
+import { toast } from 'react-toastify';
 
 export default function Register({ setIsLogin }) {
     const [user, setUser] = useState({ email: '', password: '' });
@@ -17,12 +18,12 @@ export default function Register({ setIsLogin }) {
     const registerSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await UserService.createUser({
+            await UserService.createUser({
                 email: user.email,
                 password: user.password,
             });
-            setUser({ email: '', password: '' });
-            setErr(res.data.msg);
+
+            toast('User registered successfully!');
             navigate('/login');
         } catch (err) {
             err.response.data.msg && setErr(err.response.data.msg);

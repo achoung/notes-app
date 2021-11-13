@@ -50,10 +50,13 @@ export default function Home() {
                 return (
                     <div className="cols" key={note._id}>
                         <div className="card custom-note-card">
+                            <h4
+                                className="card-title card-header custom-card-header"
+                                title={notes.title}
+                            >
+                                {note.title}
+                            </h4>
                             <div className="card-body">
-                                <h4 className="card-title card-header">
-                                    {note.title}
-                                </h4>
                                 <div className="card-text custom-note-card-content">
                                     <p>{note.content}</p>
                                 </div>

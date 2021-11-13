@@ -76,7 +76,15 @@ body {
     margin: 10px;
 }
 
+.custom-card-header {
+    /* on overflow, truncate title header into ellipses */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .custom-note-card-content {
+    /* on overflow, use scrollbars for now */
     overflow: scroll;
     height: 150px;
 }

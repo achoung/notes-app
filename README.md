@@ -39,7 +39,7 @@ Authorization token is verified in both localStorage and in an API request to ve
 
 Philosophy:
 
--   Because user account token is saved in localStorage, user can bookmark certain view routes and is able to see them without having to log in every time within a day as long as their browser localStorage is not cleared.
+-   Because Authorization token is saved in localStorage, a user can bookmark certain routes and is able to see them without having to log in every time within a day as long as their browser's localStorage is not cleared.
 -   Aurhtoization tokens do have a 24 hour expiration that is verified on page route via a back-end API so the user will have to log in after a day.
 
 Persistence
@@ -82,4 +82,10 @@ End-to-End Tests - Cypress
 
 Integration Tests - Cypress
 
--   Tests would log into the note app using fixtures to stub api requests
+-   Tests would log into the note app using JSON fixtures to stub api requests and test CRUD UX flows
+-   TBD if I have enough time to get to this
+
+Unit Tests - Jest
+
+-   Test implementation functions using mocks if necssary
+-   TBD if I have enough time to get to this

@@ -42,6 +42,10 @@ Philosophy:
 -   Because Authorization token is saved in localStorage, a user can bookmark certain routes and is able to see them without having to log in every time within a day as long as their browser's localStorage is not cleared.
 -   Aurhtoization tokens do have a 24 hour expiration that is verified on page route via a back-end API so the user will have to log in after a day.
 
+TBD TODO:
+
+-   Add proper UI loading spinners or skeleton loading frames when the UI is fetching notes or validating a user's Authorization token
+
 # Persistence
 
 -   User accounts and notes data are persisted in a cloud deployed mongodb server
@@ -64,14 +68,14 @@ Public routes that are visible to anyone:
 -   POST `/api/users/create` - creates a user account
 -   POST `/api/users/login` - logs in the user account
 
-TDB TODO:
+TBD TODO:
 
 -   Add unique API_KEY request header authentication for all requests both public and protected
 -   Update GET `/api/notes` request to allow fetching notes by pagination for scalability, filtering notes by title names, and sorting by ascending/descending titles.
 -   Add API to delete a user's account
 -   Add API to reset password for a user's account
 
-## Testing
+# Testing
 
 Running cypress tests
 

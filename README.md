@@ -80,8 +80,10 @@ Running cypress tests
 End-to-End Tests - Cypress
 
 -   Tests would log into a test user account and run CRUD operations on tests
-    Roadblock:
--   Cypress by default blocks the required "Authorization" request header needed to make E2E requests so I will probably not have enough time to get it fully working.
+
+Roadblock:
+
+-   Cypress by default blocks the required "Authorization" request header needed to make E2E requests so I will probably not have enough time to debug this and get it fully working.
 
 Integration Tests - Cypress
 
